@@ -1,7 +1,17 @@
 package com.yq;
 
-import org.openjdk.jmh.annotations.*;
 
+import org.openjdk.jmh.annotations.*;
+import org.openjdk.jmh.runner.Runner;
+import org.openjdk.jmh.runner.RunnerException;
+import org.openjdk.jmh.runner.options.Options;
+import org.openjdk.jmh.runner.options.OptionsBuilder;
+
+import java.io.File;
+import java.io.UnsupportedEncodingException;
+import java.net.URISyntaxException;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -28,8 +38,21 @@ public class HashMapCycleTest {
         }
     }};
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws RunnerException, URISyntaxException {
 
+        // 获取当前工作目录
+        String currentWorkingDirectory = System.getProperty("user.dir");
+        // 拼接上files文件夹的相对路径
+        String filesFolderPath = currentWorkingDirectory + File.separator + "files" + File.separator + "TestModule";
+
+        String logPath = filesFolderPath + File.separator + "jmh-map.log";
+
+        // 启动基准测试
+        Options opt = new OptionsBuilder()
+                .include(HashMapCycleTest.class.getSimpleName()) // 要导入的测试类
+                .output(logPath) // 输出测试结果的文件
+                .build();
+        new Runner(opt).run(); // 执行测试
     }
 
     @Benchmark
