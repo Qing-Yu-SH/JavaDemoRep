@@ -24,4 +24,14 @@ public class PhoneServiceProxy implements PhoneService{
         return null;
     }
 
+    @Override
+    public String send(String phoneNumber, String message) {
+        // 在调用方法前的操作
+        System.out.println("before send");
+        System.out.println(phoneService.send(phoneNumber,message));
+        // 在调用方法后的操作
+        System.out.println("after send");
+        return null;
+    }
+
 }

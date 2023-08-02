@@ -18,6 +18,8 @@ public class Main {
         PhoneService phoneService = new PhoneServiceImpl();
         PhoneServiceProxy serviceProxy = new PhoneServiceProxy(phoneService);
         serviceProxy.call("1889265762");
+        System.out.println();
+        serviceProxy.send("1889265762","等你");
     }
 
 }

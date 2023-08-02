@@ -14,4 +14,10 @@ public class PhoneServiceImpl implements PhoneService{
         return "已打通";
     }
 
+    @Override
+    public String send(String phoneNumber, String message) {
+        System.out.println("正在发送：" + message + "\n to：" + phoneNumber);
+        return "已发送";
+    }
+
 }

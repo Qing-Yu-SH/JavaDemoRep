@@ -1,4 +1,4 @@
-package com.yq.proxy.staticpr;
+package com.yq.proxy.dynamicpr.jdk;
 
 public interface PhoneService {
 
