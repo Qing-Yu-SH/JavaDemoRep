@@ -16,3 +16,7 @@
   * com.yq.proxy.dynamicpr：动态代理
     * com.yq.proxy.dynamicpr.jdk：JDK 动态代理
     * com.yq.proxy.dynamicpr.cglib：CGLIB 动态代理
+
+* 设计模式
+  * com.yq.pattern.factory：工厂方法
+  * com.yq.pattern.template：模板模式
