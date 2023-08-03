@@ -20,3 +20,4 @@
 * 设计模式
   * com.yq.pattern.factory：工厂方法
   * com.yq.pattern.template：模板模式
+  * com.yq.pattern.composite： 组合模式
