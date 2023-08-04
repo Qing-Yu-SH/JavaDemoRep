@@ -22,3 +22,4 @@
   * com.yq.pattern.template：模板模式
   * com.yq.pattern.composite： 组合模式
   * com.yq.pattern.strategy： 策略模式
+  * com.yq.pattern.state：状态模式
