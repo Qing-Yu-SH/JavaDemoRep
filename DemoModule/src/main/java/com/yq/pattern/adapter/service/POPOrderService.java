@@ -1,0 +1,21 @@
+package com.yq.pattern.adapter.service;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+/**
+ * @program: JavaDemoRep
+ * @description:
+ * @author: Yuqing
+ * @create: 2023-08-05 16:03
+ **/
+public class POPOrderService {
+
+    private Logger logger = LoggerFactory.getLogger(POPOrderService.class);
+
+    public boolean isFirstOrder(String uId) {
+        logger.info("POP商家，查询用户 {} 的订单是否为首单", uId);
+        return true;
+    }
+
+}
