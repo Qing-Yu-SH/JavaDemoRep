@@ -4,6 +4,7 @@ package com.yq.structure;
 /**
  * @program: JavaDemoRep
  * @description: 链表
+ *               参考：https://bugstack.cn/md/algorithm/data-structures/2022-07-22-linked-list.html
  * @author: Yuqing
  * @create: 2023-08-05 16:45
  **/
