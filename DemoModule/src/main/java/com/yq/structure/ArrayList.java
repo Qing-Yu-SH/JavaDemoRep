@@ -5,6 +5,7 @@ import java.util.Arrays;
 /**
  * @program: JavaDemoRep
  * @description: 数组
+ *               参考：https://bugstack.cn/md/algorithm/data-structures/2022-07-30-array-list.html
  * @author: Yuqing
  * @create: 2023-08-05 20:55
  **/
