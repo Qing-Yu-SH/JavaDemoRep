@@ -24,3 +24,4 @@
   * com.yq.pattern.strategy： 策略模式
   * com.yq.pattern.state：状态模式
   * com.yq.pattern.adapter：适配器模式
+  * com.yq.pattern.decorator：装饰器模式
