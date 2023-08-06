@@ -2,6 +2,7 @@ package com.yq.structure.test;
 
 import com.yq.structure.queue.DelayQueue;
 import com.yq.structure.queue.Delayed;
+import com.yq.structure.queue.PriorityQueue;
 import com.yq.structure.queue.Queue;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
@@ -11,13 +12,40 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * @program: JavaDemoRep
- * @description:
+ * @description: 队列测试
  * @author: Yuqing
- * @create: 2023-08-06 10:09
+ * @create: 2023-08-06 10:42
  **/
-public class DelayQueueTest {
+public class QueueTest {
 
-    private Logger logger = LoggerFactory.getLogger(DelayQueueTest.class);
+    private Logger logger = LoggerFactory.getLogger(QueueTest.class);
+
+
+    @Test
+    public void test_PriorityQueue(){
+        PriorityQueue<Integer> queue = new PriorityQueue<>();
+        queue.offer(1);
+        queue.offer(5);
+        queue.offer(6);
+        queue.offer(12);
+        queue.offer(16);
+        queue.offer(2);
+        System.out.println(queue.peek());
+
+        StringBuilder sb = new StringBuilder();
+        sb.append("[ ");
+        while(!queue.isEmpty()){
+            Integer x = queue.poll();
+            sb.append(x);
+            if(!queue.isEmpty()){
+                sb.append(" , ");
+            }
+        }
+        sb.append(" ]");
+        System.out.println(sb.toString());
+    }
+
+
 
     @Test
     public void test_DelayQueue() throws InterruptedException {
@@ -40,7 +68,7 @@ public class DelayQueueTest {
         }
     }
 
-    static class Job implements Delayed{
+    static class Job implements Delayed {
 
         private final String name;
         private final Long beginTime;
