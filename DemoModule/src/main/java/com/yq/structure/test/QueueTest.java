@@ -1,9 +1,6 @@
 package com.yq.structure.test;
 
-import com.yq.structure.queue.DelayQueue;
-import com.yq.structure.queue.Delayed;
-import com.yq.structure.queue.PriorityQueue;
-import com.yq.structure.queue.Queue;
+import com.yq.structure.queue.*;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -94,6 +91,22 @@ public class QueueTest {
             Job job = (Job) o;
             return (int) (this.getDelay(TimeUnit.MICROSECONDS) - job.getDelay(TimeUnit.MICROSECONDS));
         }
+    }
+
+
+    @Test
+    public void test_ArrayDeque(){
+        ArrayDeque<Integer> arrayDeque = new ArrayDeque<>();
+        arrayDeque.push(1);
+        arrayDeque.push(2);
+        arrayDeque.push(3);
+        arrayDeque.push(4);
+        arrayDeque.push(5);
+        arrayDeque.push(6);
+        logger.info(arrayDeque.print());
+        Integer num = arrayDeque.pop();
+        logger.info("出栈元素：{}",num);
+        logger.info(arrayDeque.print());
     }
 
 }
