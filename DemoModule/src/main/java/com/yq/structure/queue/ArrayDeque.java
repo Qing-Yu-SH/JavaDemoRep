@@ -4,7 +4,8 @@ import java.util.NoSuchElementException;
 
 /**
  * @program: JavaDemoRep
- * @description:
+ * @description: ArrayDeque
+ *               参考：https://juejin.cn/post/7239715294229561401#heading-1
  * @author: Yuqing
  * @create: 2023-08-06 12:47
  **/
