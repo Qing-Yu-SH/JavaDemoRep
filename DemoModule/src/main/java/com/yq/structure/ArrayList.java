@@ -95,22 +95,5 @@ public class ArrayList<E> {
                 '}';
     }
 
-    public static void main(String[] args) {
-        ArrayList<String> list = new ArrayList<>();
-        list.add("01");
-        list.add("02");
-        list.add("03");
-        list.add("04");
-        list.add("05");
-        list.add("06");
-
-        System.out.println(list);
-
-        System.out.println(list.get(2));
-
-        list.remove(0);
-
-        System.out.println(list);
-    }
 
 }
