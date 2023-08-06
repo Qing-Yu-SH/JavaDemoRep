@@ -2,7 +2,7 @@ package com.yq.structure.queue;
 
 /**
  * @program: JavaDemoRep
- * @description:
+ * @description: 双端队列接口
  * @author: Yuqing
  * @create: 2023-08-05 21:56
  **/
