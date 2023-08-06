@@ -146,28 +146,4 @@ public class PriorityQueue<E> implements Queue<E>{
         queue = Arrays.copyOf(queue,newCapacity);
     }
 
-    public static void main(String[] args) {
-        PriorityQueue<Integer> queue = new PriorityQueue<>();
-        queue.offer(1);
-        queue.offer(5);
-        queue.offer(6);
-        queue.offer(12);
-        queue.offer(16);
-        queue.offer(2);
-        System.out.println(queue.peek());
-
-        StringBuilder sb = new StringBuilder();
-        sb.append("[ ");
-        while(!queue.isEmpty()){
-            Integer x = queue.poll();
-            sb.append(x);
-            if(!queue.isEmpty()){
-                sb.append(" , ");
-            }
-        }
-        sb.append(" ]");
-        System.out.println(sb.toString());
-    }
-
-
 }
