@@ -105,6 +105,13 @@ public class BinarySearchTree extends AbstractTree{
         return node;
     }
 
+    protected Node getMiniNode(Node node) {
+        while (node.left != null) {
+            node = node.left;
+        }
+        return node;
+    }
+
     @Override
     public String toString() {
         String str = elementList.toString();
@@ -122,46 +129,3 @@ public class BinarySearchTree extends AbstractTree{
 
 
 }
-
-/**
-    private Node delete(Node node, int e){
-        if(node == null) return null;
-        if(node.value == e){
-            // 删除节点无左右孩子，直接返回 null
-            if(node.left==null && node.right==null) return null;
-            // 删除节点只存在一个孩子，返回非空的孩子
-            if(node.left==null || node.right==null){
-                return node.left==null ? node.right:node.left;
-            }
-
-            错误点不应该直接交换节点，破坏了二叉树性质
-
-            // 删除节点的左右孩子都存在
-            Node right = node.right;
-            Node pre = node;
-            // 找到右子树上的最左节点
-            while (right.left != null){
-                pre = right;
-                right = right.left;
-            }
-            // 交换节点
-            Node tempRight = right.right;
-            right.left = node.left;
-            right.right = node.right;
-            pre.left = node;
-            node.left = null;
-            node.right = tempRight;
-            node = right;
-            // 删除节点
-            node.right = delete(node.right,e);
-
-            return node;
-        }else if(node.value < e){
-            node.right = delete(node.right,e);
-        }else{
-            node.left = delete(node.left,e);
-        }
-        return root;
-    }
-
- */
