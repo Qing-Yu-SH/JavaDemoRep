@@ -15,6 +15,73 @@ public abstract class AbstractTree {
 
     public Node root;
 
+
+    /**
+     * 左旋
+     * 1
+     *   2
+     *     3
+     *  node 就是 1
+     */
+    protected Node rotateLeft(Node node){
+        Node temp = node.right;
+        temp.parent = node.parent;
+
+        node.right = temp.left;
+        if(node.right != null){
+            node.right.parent = node;
+        }
+
+        temp.left = node;
+        node.parent = temp;
+
+        if(temp.parent == null){
+            root = temp;
+        }else{
+            if(temp.parent.left == node){
+                temp.parent.left = temp;
+            }else{
+                temp.parent.right = temp;
+            }
+        }
+
+        return temp;
+    }
+
+    /**
+     * 右旋
+     *      1
+     *    2
+     *  3
+     *  node 就是 1
+     */
+    protected Node rotateRight(Node node){
+        Node temp = node.left;
+        temp.parent = node.parent;
+
+        node.left = temp.right;
+        if(node.left != null){
+            node.left.parent = node;
+        }
+
+        temp.right = node;
+        node.parent = temp;
+
+        if(temp.parent == null){
+            root = temp;
+        }else{
+            if(temp.parent.left == node){
+                temp.parent.left = temp;
+            }else{
+                temp.parent.right = temp;
+            }
+        }
+
+        return temp;
+    }
+
+
+
     protected String printSubTree(Node node) {
         StringBuilder tree = new StringBuilder();
         if (node.right != null) {
