@@ -26,3 +26,4 @@
   * com.yq.pattern.adapter：适配器模式
   * com.yq.pattern.decorator：装饰器模式
   * com.yq.pattern.observer：观察者模式
+  * com.yq.pattern.abstractfactory：抽象工厂方法
