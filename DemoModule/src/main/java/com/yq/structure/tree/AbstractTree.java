@@ -115,7 +115,7 @@ public abstract class AbstractTree {
         if (null == node.value) {
             tree.append("<NIL>");
         }else{
-            tree.append(node.value);
+            tree.append(node.value).append("(").append(node.height).append(")");
         }
         tree.append("\r\n");
     }

@@ -6,31 +6,126 @@ package com.yq.structure.tree;
  * @author: Yuqing
  * @create: 2023-08-07 22:33
  **/
-public class AVLTree extends BinarySearchTree implements Tree{
+public class AVLTree extends AbstractTree implements Tree{
+
+    private int size = 0;
 
     @Override
     public Node insert(int e) {
-        Node addNode = super.insert(e);
-        rebalance(addNode);
-        return addNode;
+        // 缓存
+        elementList.add(e);
+
+        if(root == null){
+            root = new Node(this.getClass(),e,null,null,null);
+            size++;
+            return root;
+        }
+
+        Node parent = root;
+        Node search = root;
+        while (search!=null && search.value!=null){
+            parent = search;
+            if(search.value < e){
+                search = search.right;
+            }else{
+                search = search.left;
+            }
+        }
+
+        Node newNode = new Node(this.getClass(),e,null,null,null);
+        if(parent.value < newNode.value){
+            parent.right = newNode;
+        }else{
+            parent.left = newNode;
+        }
+        newNode.parent = parent;
+
+        size++;
+        rebalance(newNode);
+        return newNode;
     }
+
+
 
     @Override
     public Node delete(int e) {
+        // 缓存
+        elementList.add(e);
         Node delNode = search(e);
-        if (delNode != null){
-            Node delNodeSuccess = super.delete(delNode.value);
-            if (delNodeSuccess != null){
-                Node min = delNodeSuccess.right != null ? getMiniNode(delNodeSuccess.right) : delNodeSuccess;
+
+        if(delNode != null){
+            // delNodeSuccess 替换后的节点
+            Node delNodeSuccess = delete(delNode);
+            if(delNodeSuccess.right != null){
+                Node min = getMiniNode(delNodeSuccess.right);
                 recomputeHeight(min);
                 rebalance(min);
-            } else {
-                recomputeHeight(delNodeSuccess.parent);
-                rebalance(delNodeSuccess.parent);
+            }else{
+                recomputeHeight(delNodeSuccess);
+                rebalance(delNodeSuccess);
             }
-            return delNodeSuccess;
         }
-        return null;
+
+        return delNode;
+    }
+
+    private Node delete(Node delNode){
+        if(delNode == null) return null;
+        Node result = null;
+        Node parent = delNode.parent;
+        if(delNode.left == null){
+            result = transplant(delNode,delNode.right);
+        }else if(delNode.right == null){
+            result = transplant(delNode,delNode.left);
+        }else{
+            // 找到右子树上的最左侧节点，即最小节点
+            Node miniNode = getMiniNode(delNode.right);
+            // 通过最小节点替换待删节点
+            if(miniNode.parent != delNode){
+                // 如果 miniNode 不是 delNode 右孩子，则需要进行处理
+                // 拿 miniNode 的右孩子替换 miniNode
+                transplant(miniNode,miniNode.right);
+                // 将 delNode 的右孩子移动到 miniNode 的右孩子处
+                miniNode.right = delNode.right;
+                miniNode.right.parent = miniNode;
+            }
+            // 交换位置
+            transplant(delNode,miniNode);
+            miniNode.left = delNode.left;
+            miniNode.left.parent = miniNode;
+            result = miniNode;
+        }
+        size--;
+        return result==null ? parent:result;
+    }
+
+    protected Node getMiniNode(Node node) {
+        while (node.left != null) {
+            node = node.left;
+        }
+        return node;
+    }
+
+    /**
+     * 节点替换
+     * @param delNode 删除节点
+     * @param addNode 替换节点
+     * @return
+     */
+    protected Node transplant(Node delNode, Node addNode){
+        // 修改父节点
+        if(delNode.parent == null){
+            root = addNode;
+        }else if(delNode.parent.left == delNode){
+            delNode.parent.left = addNode;
+        }else{
+            delNode.parent.right = addNode;
+        }
+        if(null != addNode){
+            addNode.parent = delNode.parent;
+        }
+
+        return addNode;
     }
 
 
@@ -127,6 +222,19 @@ public class AVLTree extends BinarySearchTree implements Tree{
         int leftHeight = (node.left == null) ? -1 : (node.left).height;
         int rightHeight = (node.right == null) ? -1 : (node.right).height;
         return leftHeight - rightHeight;
+    }
+
+    @Override
+    public String toString() {
+        String str = elementList.toString();
+        str = str.substring(str.indexOf("[") + 1, str.lastIndexOf("]")).replace(" ", "");
+        int nullIdx = str.indexOf("null");
+        if (nullIdx > 0) {
+            str = str.substring(0, str.indexOf("null"));
+            str = str.substring(0, str.lastIndexOf(","));
+        }
+        System.out.println(this.getClass().getSimpleName() + "，输入节点：" + str + "\r\n");
+        return printSubTree(root);
     }
 
 }
