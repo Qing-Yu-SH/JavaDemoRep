@@ -39,6 +39,7 @@ public class BinarySearchTree extends AbstractTree{
         }else{
             parent.left = newNode;
         }
+        newNode.parent = parent;
 
         size++;
         return newNode;
@@ -74,11 +75,14 @@ public class BinarySearchTree extends AbstractTree{
             }
             // 交换节点
             Node tempRight = right.right;
+            Node tempParent = right.parent;
             right.left = node.left;
             right.right = node.right;
+            right.parent = node.parent;
             pre.left = node;
             node.left = null;
             node.right = tempRight;
+            node.parent = tempParent;
             node = right;
             // 删除节点
             node.right = delete(node.right,e);
