@@ -2,6 +2,7 @@ package com.yq.structure.test;
 
 import com.yq.structure.tree.AVLTree;
 import com.yq.structure.tree.BinarySearchTree;
+import com.yq.structure.tree.Tree_2_3;
 import org.junit.jupiter.api.Test;
 
 import java.util.Random;
@@ -51,6 +52,15 @@ public class TreeTest {
 
         tree.delete(53);
         System.out.println(tree);
+    }
+
+    @Test
+    public void test_Tree2_3(){
+        Tree_2_3 tree = new Tree_2_3();
+        for (int i = 1; i <= 10; i++) {
+            tree.insert(i);
+            System.out.println(tree);
+        }
     }
 
 }
