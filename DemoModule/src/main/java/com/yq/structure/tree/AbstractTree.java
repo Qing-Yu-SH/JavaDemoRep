@@ -15,6 +15,8 @@ public abstract class AbstractTree {
 
     public Node root;
 
+    protected static final Node nilNode = new Node(RedBlackTree.class, null, null, null, null, Node.Color.BLACK);
+
 
     /**
      * 左旋
@@ -28,14 +30,14 @@ public abstract class AbstractTree {
         temp.parent = node.parent;
 
         node.right = temp.left;
-        if(node.right != null){
+        if(node.right != null && node.right != nilNode){
             node.right.parent = node;
         }
 
         temp.left = node;
         node.parent = temp;
 
-        if(temp.parent == null){
+        if(temp.parent == null || temp.parent == nilNode){
             root = temp;
         }else{
             if(temp.parent.left == node){
@@ -60,7 +62,7 @@ public abstract class AbstractTree {
         temp.parent = node.parent;
 
         node.left = temp.right;
-        if(node.left != null){
+        if(node.left != null && node.left != nilNode){
             node.left.parent = node;
         }
 
@@ -70,7 +72,7 @@ public abstract class AbstractTree {
         if(temp.parent == null){
             root = temp;
         }else{
-            if(temp.parent.left == node){
+            if(temp.parent.left == node || temp.parent == nilNode){
                 temp.parent.left = temp;
             }else{
                 temp.parent.right = temp;
@@ -114,8 +116,13 @@ public abstract class AbstractTree {
     private void printNodeValue(Node node, StringBuilder tree) {
         if (null == node.value) {
             tree.append("<NIL>");
-        }else{
-            tree.append(node.value).append("(").append(node.height).append(")");
+        } else {
+            tree.append(node.value);
+            if (root.clazz.equals(AVLTree.class)) {
+                tree.append("(").append(node.height).append(")");
+            } else if (root.clazz.equals(RedBlackTree.class)) {
+                tree.append("(").append(node.color == Node.Color.BLACK ? "黑" : "红").append(")");
+            }
         }
         tree.append("\r\n");
     }

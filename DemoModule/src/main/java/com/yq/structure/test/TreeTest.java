@@ -1,8 +1,6 @@
 package com.yq.structure.test;
 
-import com.yq.structure.tree.AVLTree;
-import com.yq.structure.tree.BinarySearchTree;
-import com.yq.structure.tree.Tree_2_3;
+import com.yq.structure.tree.*;
 import org.junit.jupiter.api.Test;
 
 import java.util.Random;
@@ -61,6 +59,15 @@ public class TreeTest {
             tree.insert(i);
             System.out.println(tree);
         }
+    }
+
+    @Test
+    public void test_redBlackTree(){
+        Tree tree = new RedBlackTree();
+        for (int i = 0; i < 20; i++) {
+            tree.insert(new Random().nextInt(100));
+        }
+        System.out.println(tree);
     }
 
 }
