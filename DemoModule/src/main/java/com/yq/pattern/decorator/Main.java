@@ -21,6 +21,15 @@ import com.yq.pattern.decorator.sso.impl.SsoInterceptor;
  * 意图：动态地给一个对象添加一些额外的职责。就增加功能来说，装饰器模式相比生成子类更为灵活
  *
  * 主要解决：一般的，我们为了扩展一个类经常使用继承方式实现，由于继承为类引入静态特征，并且随着扩展功能的增多，子类会很膨胀
+ *
+ * 扩展新功能的方式一般有两种机制：
+ * 1.继承机制，一个类继承另一个类。静态方式，一定要写一个新的子类，对类层级进行扩展
+ * 2.关联机制，将一个类注入到另一个类。动态方式，在不修改原有逻辑的基础上增加新功能
+ *
+ *
+ * 1.模型 SSO 单点登录；定义 HandlerInterceptor 接口 和 单点登录功能 SsoInterceptor 类
+ * 2.定义抽象装饰类 SsoDecorator，实现 HandlerInterceptor 接口，将 SsoInterceptor 注入；实现 preHandle() 方法，并调用 SsoInterceptor 的 preHandle() 方法
+ * 3.定义装饰角色 LoginSsoDecorator，继承 SsoDecorator 抽象类；在调用原有功能的基础上，扩展新的功能
  */
 public class Main {
 
