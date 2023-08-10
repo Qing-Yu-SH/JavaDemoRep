@@ -18,7 +18,7 @@ public class TopicRandomUtil {
      */
     static public Topic random(Map<String,String> option, String answer){
         Set<String> keySet = option.keySet();
-        ArrayList<String> keyList = new ArrayList<>();
+        ArrayList<String> keyList = new ArrayList<>(keySet);
         Collections.shuffle(keyList);
         Map<String,String> newOption = new HashMap<>();
         int idx = 0;
