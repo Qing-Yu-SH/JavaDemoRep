@@ -40,11 +40,4 @@ public class DefaultDisjoint_01 extends AbstractDisjointSet implements IDisjoint
         count--;
     }
 
-    /**
-     * 返回子集数量
-     */
-    public int getCount(){
-        return count;
-    }
-
 }
