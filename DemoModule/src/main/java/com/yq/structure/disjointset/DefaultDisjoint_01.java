@@ -10,6 +10,7 @@ public class DefaultDisjoint_01 extends AbstractDisjointSet implements IDisjoint
 
     public DefaultDisjoint_01(int size){
         items = new int[size];
+        count = size;
         for(int i=0;i<size;i++){
             items[i] = i;
         }
@@ -36,6 +37,14 @@ public class DefaultDisjoint_01 extends AbstractDisjointSet implements IDisjoint
                 items[i] = parentVal;
             }
         }
+        count--;
+    }
+
+    /**
+     * 返回子集数量
+     */
+    public int getCount(){
+        return count;
     }
 
 }
