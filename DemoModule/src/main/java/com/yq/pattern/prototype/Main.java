@@ -14,5 +14,13 @@ package com.yq.pattern.prototype;
  */
 public class Main {
 
+    public static void main(String[] args) throws CloneNotSupportedException {
+        QuestionBankController controller = new QuestionBankController();
+        QuestionBank paper = controller.createPaper("202115106", "yq");
+        System.out.println(paper);
+
+        QuestionBank paper2 = controller.createPaper("202115102", "xw");
+        System.out.println(paper2);
+    }
 
 }
