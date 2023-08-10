@@ -14,11 +14,12 @@ import java.util.Map;
 public abstract class AbstractDisjointSet {
 
     public int[] items;
+    protected int count;
 
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        builder.append("坐标 | ");
+        builder.append("\n坐标 | ");
         for (int i = 0; i < items.length; i++) {
             builder.append(i);
             builder.append(" | ");
@@ -53,6 +54,13 @@ public abstract class AbstractDisjointSet {
         }
 
         return builder.toString();
+    }
+
+    /**
+     * 返回子集数量
+     */
+    public int getCount() {
+        return count;
     }
 
 }
