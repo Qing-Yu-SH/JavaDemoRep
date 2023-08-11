@@ -29,3 +29,4 @@
   * com.yq.pattern.abstractfactory：抽象工厂方法
   * com.yq.pattern.builder：建造者模式
   * com.yq.pattern.prototype：原型模式
+  * com.yq.pattern.singleton：单例模式
