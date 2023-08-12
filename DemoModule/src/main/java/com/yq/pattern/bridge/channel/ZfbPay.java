@@ -1,0 +1,32 @@
+package com.yq.pattern.bridge.channel;
+
+import com.yq.pattern.bridge.model.IPayMode;
+
+import java.math.BigDecimal;
+
+/**
+ * @program: JavaDemoRep
+ * @description:
+ * @author: Yuqing
+ * @create: 2023-08-12 13:16
+ **/
+public class ZfbPay extends Pay{
+
+    public ZfbPay(IPayMode payMode) {
+        super(payMode);
+    }
+
+    @Override
+    public String transfer(String uId, String tradeId, BigDecimal amount) {
+        logger.info("模拟支付宝渠道⽀付划账开始。uId：{} tradeId：{} amount：{}", uId, tradeId, amount);
+        boolean security = payMode.security(uId);
+        logger.info("模拟支付宝渠道⽀付⻛控校验。uId：{} tradeId：{} security： {}", uId, tradeId, security);
+        if (!security) {
+            logger.info("模拟支付宝渠道⽀付划账拦截。uId：{} tradeId：{} amount： {}", uId, tradeId, amount);
+            return "0001";
+        }
+        logger.info("模拟支付宝渠道⽀付划账成功。uId：{} tradeId：{} amount：{}", uId, tradeId, amount);
+        return "0000";
+    }
+
+}
