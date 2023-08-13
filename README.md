@@ -31,3 +31,4 @@
   * com.yq.pattern.prototype：原型模式
   * com.yq.pattern.singleton：单例模式
   * com.yq.pattern.bridge：桥接模式
+  * com.yq.pattern.facade：门面模式
