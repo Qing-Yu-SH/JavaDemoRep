@@ -34,3 +34,4 @@
   * com.yq.pattern.facade：门面模式
   * com.yq.pattern.flyweight：享元模式
   * com.yq.pattern.chain：责任链模式
+  * com.yq.pattern.command：命令模式
