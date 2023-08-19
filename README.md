@@ -35,3 +35,4 @@
   * com.yq.pattern.flyweight：享元模式
   * com.yq.pattern.chain：责任链模式
   * com.yq.pattern.command：命令模式
+  * com.yq.pattern.iterator：迭代器模式
