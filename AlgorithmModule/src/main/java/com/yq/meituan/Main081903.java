@@ -13,7 +13,7 @@ import java.util.Scanner;
  *               参考：https://codefun2000.com/p/P1469
  * @create: 2023-08-26 13:26
  **/
-public class Main030819 {
+public class Main081903 {
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);

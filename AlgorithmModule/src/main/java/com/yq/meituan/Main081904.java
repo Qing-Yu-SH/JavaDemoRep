@@ -22,7 +22,7 @@ import java.util.Scanner;
  *               参考：https://codefun2000.com/p/P1470
  * @create: 2023-08-26 13:34
  **/
-public class Main040819 {
+public class Main081904 {
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
