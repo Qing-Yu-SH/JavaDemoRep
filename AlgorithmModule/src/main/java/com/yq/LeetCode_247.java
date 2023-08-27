@@ -39,6 +39,7 @@ public class LeetCode_247 {
 
     private void dfs(int n){
         if(sb.length() == n/2){
+            // 先拼接出一半的可翻转数字，另外一半根据前一半数字构造
             char[] arr = sb.toString().toCharArray();
             if(n%2 == 1){
                 ans.add(sb.toString() + "0" + upsideDown(arr));
@@ -52,6 +53,7 @@ public class LeetCode_247 {
 
         for(int i=0;i<dic.length;i++){
             if(sb.length()==0 && dic[i]==0) continue;
+            // 回溯
             sb.append(dic[i]);
             dfs(n);
             sb = sb.deleteCharAt(sb.length()-1);
