@@ -1,11 +1,18 @@
-package com.yq.multithreading.synchronization;
+package com.yq.multithreading.interviewQuestions;
+
+import java.util.Random;
 
 /**
  * @program: JavaDemoRep
- * @description: 哲学家问题 — 存在死锁问题的解法
- * @create: 2023-09-03 14:30
+ * @description: 哲学家问题 — 解决死锁问题
+ *                          通过在获取筷子时，设置一个互斥量来解决死锁问题
+ *                          问题：导致每次只有一个哲学家吃饭，效率比较低
+ * @create: 2023-09-03 14:41
  **/
-public class PhilosopherQuestion {
+public class PhilosopherQuestion2 {
+
+    private static Object mutex = new Object();
+    private static Random random = new Random();
 
     public static void main(String[] args) {
         Chopsticks cs0 = new Chopsticks();
@@ -42,18 +49,26 @@ public class PhilosopherQuestion {
 
         @Override
         public void run() {
-            synchronized (left){
-                try {
-                    // 制造出现死锁的情况
-                    Thread.sleep(index + 1);
-                    synchronized (right){
-                        System.out.println(index + " 号哲学家完成 Eating");
+
+            try {
+
+                synchronized (mutex){
+                    Thread.sleep(random.nextInt(1000));
+                    synchronized (left){
+                        Thread.sleep(random.nextInt(1000));
+                        synchronized (right){
+                            Thread.sleep(random.nextInt(1000));
+                            System.out.println(index + " 号哲学家完成 Eating");
+                        }
                     }
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
                 }
+
+            }catch (InterruptedException e) {
+                e.printStackTrace();
             }
+
         }
     }
+
 
 }

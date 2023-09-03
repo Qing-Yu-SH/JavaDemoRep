@@ -1,16 +1,11 @@
-package com.yq.multithreading.synchronization;
-
-import java.util.Random;
+package com.yq.multithreading.interviewQuestions;
 
 /**
  * @program: JavaDemoRep
- * @description: 哲学家问题 —— 解决死锁问题
- *                           编号为偶数的先拿左边筷子，编号为奇数的先拿右边筷子
- * @create: 2023-09-03 14:45
+ * @description: 哲学家问题 — 存在死锁问题的解法
+ * @create: 2023-09-03 14:30
  **/
-public class PhilosopherQuestion3 {
-
-    private static Random random = new Random();
+public class PhilosopherQuestion {
 
     public static void main(String[] args) {
         Chopsticks cs0 = new Chopsticks();
@@ -47,31 +42,17 @@ public class PhilosopherQuestion3 {
 
         @Override
         public void run() {
-
-            try {
-
-                if(index%2 == 0){
-                    synchronized (left){
-                        Thread.sleep(random.nextInt(1000));
-                        synchronized (right){
-                            Thread.sleep(random.nextInt(1000));
-                            System.out.println(index + " 号哲学家完成 Eating");
-                        }
-                    }
-                }else {
+            synchronized (left){
+                try {
+                    // 制造出现死锁的情况
+                    Thread.sleep(index + 1);
                     synchronized (right){
-                        Thread.sleep(random.nextInt(1000));
-                        synchronized (left){
-                            Thread.sleep(random.nextInt(1000));
-                            System.out.println(index + " 号哲学家完成 Eating");
-                        }
+                        System.out.println(index + " 号哲学家完成 Eating");
                     }
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
-
-            }catch (InterruptedException e) {
-                e.printStackTrace();
             }
-
         }
     }
 

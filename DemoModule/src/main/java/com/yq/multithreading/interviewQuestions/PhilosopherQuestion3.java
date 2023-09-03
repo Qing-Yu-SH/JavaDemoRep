@@ -1,17 +1,15 @@
-package com.yq.multithreading.synchronization;
+package com.yq.multithreading.interviewQuestions;
 
 import java.util.Random;
 
 /**
  * @program: JavaDemoRep
- * @description: 哲学家问题 — 解决死锁问题
- *                          通过在获取筷子时，设置一个互斥量来解决死锁问题
- *                          问题：导致每次只有一个哲学家吃饭，效率比较低
- * @create: 2023-09-03 14:41
+ * @description: 哲学家问题 —— 解决死锁问题
+ *                           编号为偶数的先拿左边筷子，编号为奇数的先拿右边筷子
+ * @create: 2023-09-03 14:45
  **/
-public class PhilosopherQuestion2 {
+public class PhilosopherQuestion3 {
 
-    private static Object mutex = new Object();
     private static Random random = new Random();
 
     public static void main(String[] args) {
@@ -52,11 +50,18 @@ public class PhilosopherQuestion2 {
 
             try {
 
-                synchronized (mutex){
-                    Thread.sleep(random.nextInt(1000));
+                if(index%2 == 0){
                     synchronized (left){
                         Thread.sleep(random.nextInt(1000));
                         synchronized (right){
+                            Thread.sleep(random.nextInt(1000));
+                            System.out.println(index + " 号哲学家完成 Eating");
+                        }
+                    }
+                }else {
+                    synchronized (right){
+                        Thread.sleep(random.nextInt(1000));
+                        synchronized (left){
                             Thread.sleep(random.nextInt(1000));
                             System.out.println(index + " 号哲学家完成 Eating");
                         }
@@ -69,6 +74,5 @@ public class PhilosopherQuestion2 {
 
         }
     }
-
 
 }
