@@ -40,6 +40,8 @@ public class CreateThread {
         // 方式 4：线程池
         ExecutorService executorService = Executors.newFixedThreadPool(10);
         executorService.execute(() -> System.out.println("Thread04 running.."));
+        executorService.shutdown();
+
     }
 
 }
