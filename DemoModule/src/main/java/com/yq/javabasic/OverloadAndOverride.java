@@ -21,6 +21,9 @@ public class OverloadAndOverride {
         man.getAge();
         man.callName("man");
         man.throwException();
+        man.play();
+        man.doing();
+        man.think();
     }
 
 }
@@ -68,6 +71,7 @@ class Fruit{
  * 3.返回值类型应比父类的小或者相等；如果是 void 或者 基本数据类型，则不能修改
  * 4.访问修饰符要不父类的大或者相等，即不能做更严格的限制
  * 5.子类方法声明抛出的异常类应比父类方法声明抛出的异常类更小或相等
+ * 6.被 private/static/final 修饰的方法无法被重写
  * 6.发生在运行期
  */
 
@@ -84,6 +88,18 @@ class Person{
 
     void throwException() throws IndexOutOfBoundsException{
         System.out.println("Person#throwException");
+    }
+
+    private void play(){
+        System.out.println("Person#play()");
+    }
+
+    public final void doing(){
+        System.out.println("Person#doing()");
+    }
+
+    public static void think(){
+        System.out.println("Person#think()");
     }
 
 }
@@ -104,6 +120,20 @@ class Man extends Person{
     // 5；注意：如果抛出 Exception，则编译不通过；如果抛出的异常是 RuntimeException 及其子类，则能正常运行
     void throwException() throws RuntimeException{
         System.out.println("Man#throwException");
+    }
+
+    // 实际是 Man 方法独有的，不属于重写；如果通过父类引用，指向子类对象，是无法调用该方法的
+    public void play(){
+        System.out.println("Man#play()");
+    }
+
+    // 报：doing()' 无法重写 'com.yq.javabasic.Person' 中的 'doing()'；重写的方法为 final
+//    public final void doing(){
+//        System.out.println("Person#doing()");
+//    }
+
+    public static void think(){
+        System.out.println("Man#think()");
     }
 
 }
