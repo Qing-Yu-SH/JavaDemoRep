@@ -1,11 +1,14 @@
 package com.yq.config;
 
 import com.yq.hook.filter.ZFilter;
+import com.yq.hook.servlet.HealthServlet2;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
+import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import javax.servlet.Filter;
+import javax.servlet.Servlet;
 import java.util.Arrays;
 
 /**
@@ -27,6 +30,15 @@ public class ApplicationConfig {
         // 指定优先级
         filter.setOrder(2);
         return filter;
+    }
+
+    // 注册 Servlet 方式 2
+    @Bean
+    public ServletRegistrationBean servletBean(){
+        ServletRegistrationBean<Servlet> registrationBean = new ServletRegistrationBean<>();
+        registrationBean.addUrlMappings("/check2");
+        registrationBean.setServlet(new HealthServlet2());
+        return registrationBean;
     }
 
 }
