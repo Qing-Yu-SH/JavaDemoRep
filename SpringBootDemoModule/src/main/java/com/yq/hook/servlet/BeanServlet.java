@@ -23,8 +23,8 @@ import java.io.PrintWriter;
  * 定义一个 bean 时，添加 @Order 更改其优先级，让其优先级高于 Spring Web 的 Servlet，从而将相同的 URL 优先分配给 BeanServlet
  */
 
-@Component
-@Order(-1)
+//@Component
+//@Order(-1)
 public class BeanServlet extends HttpServlet {
 
     @Override
