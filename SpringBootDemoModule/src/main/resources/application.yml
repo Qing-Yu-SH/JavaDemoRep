@@ -1,2 +1,28 @@
 server:
   port: 8080
+
+# knife4j；访问地址：http://localhost:8080/doc.html#/home
+knife4j:
+  enable: true
+  setting:
+    language: zh-CN
+  openapi:
+    title: Spring Boot Demo
+    description: 一个学习 Spring Boot、Mybatis、Redis 等开发技术的 Demo
+    version: 1.0.0
+    concat:
+      - Yu
+      - https://github.com/Qing-Yu-SH/JavaDemoRep
+    license: Apache License 2.0
+    email: Yu@163.com
+    group:
+      frontGroup:
+        group-name: 业务接口分组
+        api-rule: package
+        api-rule-resources:
+          - com.yq.controller.frontcontroller
+      testGroup:
+        group-name: 测试接口分组
+        api-rule: package
+        api-rule-resources:
+          - com.yq.controller.testcontroller
