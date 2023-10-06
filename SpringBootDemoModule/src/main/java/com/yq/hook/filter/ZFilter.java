@@ -18,9 +18,9 @@ public class ZFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        logger.info("ZFilter 开始执行..");
+//        logger.info("ZFilter 开始执行..");
         filterChain.doFilter(servletRequest,servletResponse);
-        logger.info("ZFilter 执行结束..");
+//        logger.info("ZFilter 执行结束..");
     }
 
 }
