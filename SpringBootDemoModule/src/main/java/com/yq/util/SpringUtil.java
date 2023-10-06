@@ -14,13 +14,19 @@ import org.springframework.stereotype.Component;
  * @create: 2023-10-05 14:55
  **/
 @Component
-public class SpringUtil implements ApplicationContextAware {
+public class SpringUtil implements ApplicationContextAware, EnvironmentAware{
     private volatile static ApplicationContext context;
+    private volatile static Environment environment;
 
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         SpringUtil.context = applicationContext;
+    }
+
+    @Override
+    public void setEnvironment(Environment environment) {
+        SpringUtil.environment = environment;
     }
 
 
@@ -52,6 +58,23 @@ public class SpringUtil implements ApplicationContextAware {
             return null;
         }
     }
+
+    public static String getConfig(String key) {
+        return environment.getProperty(key);
+    }
+
+    public static String getConfigOrElse(String mainKey, String slaveKey) {
+        String ans = environment.getProperty(mainKey);
+        if (ans == null) {
+            return environment.getProperty(slaveKey);
+        }
+        return ans;
+    }
+
+    public static String getConfig(String key, String val) {
+        return environment.getProperty(key, val);
+    }
+
 
 
 }
