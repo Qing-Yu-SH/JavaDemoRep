@@ -18,7 +18,9 @@ public enum StatusEnum {
     FORBID_ERROR(100_403_001, "无权限"),
     FORBID_NOTLOGIN(100_403_003, "未登录"),
 
-    LOGIN_FAILED_MIXED(400_403_001, "登录失败:%s");
+    LOGIN_FAILED_MIXED(400_403_001, "登录失败:%s"),
+
+    UNKNOWN_ERROR(400_404_001,"未知错误");
 
 
     private int code;
