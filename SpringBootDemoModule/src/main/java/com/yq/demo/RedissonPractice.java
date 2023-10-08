@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * @program: JavaDemoRep
  * @description: Redission 相关操作
@@ -42,12 +44,13 @@ public class RedissonPractice {
      */
     public String getNameById(Integer id){
         RReadWriteLock readWriteLock = redissonClient.getReadWriteLock("USER_READ_WRITE_LOCK");
+        System.out.println("getNameById()  -->  尝试获取读锁");
         // 读之前加读锁，等待 lockKey 的写锁释放
         RLock rLock = readWriteLock.readLock();
         try {
             // 开锁
             rLock.lock();
-            System.out.println("readLock..");
+            System.out.println("getNameById()  -->  readLock 获取成功..");
             String name = redisTemplate.opsForValue().get("user_" + id);
             if(StringUtils.isNoneEmpty(name)){
                 return name;
@@ -66,12 +69,13 @@ public class RedissonPractice {
      */
     public void updateNameById(Integer id){
         RReadWriteLock readWriteLock = redissonClient.getReadWriteLock("USER_READ_WRITE_LOCK");
+        System.out.println("updateNameById()  -->  尝试获取写锁");
         // 写之前加写锁，等待 lockKey 的读锁释放
         RLock wLock = readWriteLock.writeLock();
         try {
             // 开锁
             wLock.lock();
-            System.out.println("writeLock..");
+            System.out.println("updateNameById()  -->  writeLock 获取成功..");
             // 更新 mysql 数据
             String name = "Yu";
             try {
@@ -88,5 +92,52 @@ public class RedissonPractice {
     }
 
     /*---------------------双写一致，通过使用读写锁达到强一致性----------------------*/
+
+
+    /*---------------------分布式锁----------------------*/
+
+    public void redisLock(Integer id) throws InterruptedException {
+        // 通过 hash 结构存储分布式锁，其中 key：REDIS_LOCK、filed：threadId、value：重入次数
+        // 底层是 setnx 和 lua 脚本（保证原子性）
+        RLock lock = redissonClient.getLock("REDIS_LOCK");
+        System.out.println("user_" + id + " 尝试获取锁..");
+        // 尝试获取锁，参数分别是：获取锁的最大等待时间（期间会重试）、锁自动释放时间、时间单位
+        // boolean isLock = lock.tryLock(10,30, TimeUnit.SECONDS);
+        // 添加锁自动释放时间，则 watch dog 会失效；watch dog 会对锁进行续期
+        boolean isLock = lock.tryLock(20, TimeUnit.SECONDS);
+        if(isLock){
+            try {
+                System.out.println("user_" + id + " 获取锁成功；执行业务..");
+                Thread.sleep(10000);
+            }finally {
+                // 释放锁
+                lock.unlock();
+            }
+        }
+    }
+
+    public void add(){
+        RLock lock = redissonClient.getLock("REENTRY_LOCK");
+        boolean isLock = lock.tryLock();
+        if(isLock){
+            System.out.println("add() 获取锁..");
+        }
+        add2();
+
+        lock.unlock();
+    }
+
+    public void add2(){
+        RLock lock = redissonClient.getLock("REENTRY_LOCK");
+        boolean isLock = lock.tryLock();
+        if(isLock){
+            System.out.println("add2() 获取锁..");
+        }
+
+        lock.unlock();
+    }
+
+    /*---------------------分布式锁----------------------*/
+
 
 }
