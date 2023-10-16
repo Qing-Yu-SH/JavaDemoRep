@@ -1,0 +1,26 @@
+spring:
+  rabbitmq:
+    host: localhost
+    port: 5672
+    virtual-host: /ks
+    username: guest
+    password: guest
+    listener:
+      simple:
+        prefetch: 1  # 每次只能获取一条消息，处理完成才能获取下一个消息
+        # 消费者重试
+        retry:
+          enabled: true # 开启消费者失败重试
+          initial-interval: 1000ms # 初始的失败等待时长为 1s
+          multiplier: 1 # 下次失败的等待时长的倍数
+          max-attempts: 3 # 最大重试次数
+          stateless: true # true 无状态、false 有状态；如果业务中包含事务，这里改为 false
+      direct:
+        acknowledge-mode: auto  # 消息确认模式
+    connection-timeout: 1s # 设置 MQ 的连接超时时间
+
+logging:
+  pattern:
+    dateformat: MM-dd HH:mm:ss:SSS
+  level:
+    com.yq: debug
