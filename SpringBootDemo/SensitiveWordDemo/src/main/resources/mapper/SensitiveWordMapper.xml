@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yq.mapper.SensitiveWordMapper">
+
+    <resultMap id="dataMap" type="com.yq.pojo.SensitiveWord">
+        <id column="id" property="id"/>
+        <result column="sensitives" property="sensitives"/>
+        <result column="create_time" property="createTime"/>
+    </resultMap>
+
+   <select id="getAllDenyWord" resultType="java.lang.String">
+       select sensitives from sensitive_word;
+   </select>
+
+
+</mapper>
