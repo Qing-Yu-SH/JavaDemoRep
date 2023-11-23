@@ -11,7 +11,17 @@
     <modules>
         <module>TestModule</module>
         <module>DemoModule</module>
+        <module>AlgorithmModule</module>
+        <module>MinimalismSpringDemo</module>
+        <module>SpringBootDemoModule</module>
+        <module>SpringBootDemo</module>
     </modules>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.7.1</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
