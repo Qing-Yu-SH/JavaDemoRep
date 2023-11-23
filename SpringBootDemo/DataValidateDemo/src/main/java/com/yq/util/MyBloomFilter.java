@@ -7,7 +7,7 @@ import java.util.BitSet;
 
 /**
  * @program: JavaDemoRep
- * @description:
+ * @description: 布隆过滤器；可通过 Redis 实现
  * @author: Yuqing
  * @create: 2023-11-23 17:05
  **/
@@ -48,7 +48,7 @@ public class MyBloomFilter {
      *
      * @param value 需要加入的值
      */
-    public void add(String value) {
+    public static void add(String value) {
         if (value != null) {
             for (HashFunction f : functions) {
                 //计算 hash 值并修改 bitmap 中相应位置为 true
@@ -62,7 +62,7 @@ public class MyBloomFilter {
      * @param value 需要判断的元素
      * @return 结果
      */
-    public boolean contains(String value) {
+    public static boolean contains(String value) {
         if (value == null) {
             return false;
         }
