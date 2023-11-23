@@ -1,4 +1,5 @@
-package com.yq.util;
+package com.yq.util.bloom;
+
 
 import org.springframework.stereotype.Component;
 
@@ -7,12 +8,12 @@ import java.util.BitSet;
 
 /**
  * @program: JavaDemoRep
- * @description: 布隆过滤器；可通过 Redis 实现
+ * @description:
  * @author: Yuqing
- * @create: 2023-11-23 17:05
+ * @create: 2023-11-23 19:02
  **/
 @Component
-public class MyBloomFilter {
+public class EmailBloomFilter {
 
     /**
      * 一个长度为10亿的比特位
@@ -77,25 +78,5 @@ public class MyBloomFilter {
         return ret;
     }
 
-    class HashFunction {
-
-        private int size;
-        private int seed;
-
-        public HashFunction(int size, int seed) {
-            this.size = size;
-            this.seed = seed;
-        }
-
-        public int hash(String value) {
-            int result = 0;
-            int len = value.length();
-            for (int i = 0; i < len; i++) {
-                result = seed * result + value.charAt(i);
-            }
-            int r = (size - 1) & result;
-            return (size - 1) & result;
-        }
-    }
 
 }
