@@ -57,7 +57,7 @@ public class MagicProgram {
 
     private static void printFoldInHalfPoker(String[] pokers){
         StringBuilder sb = new StringBuilder();
-        sb.append("Step 2：四张卡牌对折撕开 \n");
+        sb.append("Step 2：四张卡牌对折撕开并重叠 \n");
         sb.append("\t\t");
         for(String poker : pokers){
             sb.append(poker).append(" ");
@@ -95,7 +95,7 @@ public class MagicProgram {
 
     private static void printInsertPoker(String[] pokers){
         StringBuilder sb = new StringBuilder();
-        sb.append("Step 4：拿起前三张牌，插进剩下牌的中间 \n");
+        sb.append("Step 4：拿起前三张牌，插进剩下卡牌的中间 \n");
         sb.append("\t\t");
         for(String poker : pokers){
             sb.append(poker).append(" ");
@@ -168,7 +168,7 @@ public class MagicProgram {
 
     private static void printHoldSevenTimesPoker(String[] pokers){
         StringBuilder sb = new StringBuilder();
-        sb.append("Step 8：大喊 “见证奇迹的时刻”，每喊一个字将一张卡牌下方，总共下放 7 次 \n");
+        sb.append("Step 8：大喊 “见证奇迹的时刻”，每喊一个字将一张卡牌下放，总共下放 7 次 \n");
         sb.append("\t\t");
         for(String poker : pokers){
             sb.append(poker).append(" ");
@@ -185,10 +185,6 @@ public class MagicProgram {
             System.arraycopy(pokers,2,pokers,0,len-2);
             len--;
             pokers[len-1] = poker;
-        }
-        for(int i=0;i<len;i++){
-            System.out.print(pokers[i]);
-            System.out.print(" ");
         }
 
         StringBuilder sb = new StringBuilder();
