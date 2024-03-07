@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/processdef">
+  <process id="请假" name="请假流程" isExecutable="true">
+    <documentation>请假通用审批流程</documentation>
+    <startEvent id="startEvent1"></startEvent>
+    <userTask id="sid-3DD037E2-E996-4267-8157-F13C85D74143" name="部门审批" activiti:candidateUsers="admin,A001">
+      <extensionElements>
+        <modeler:user-info-email-admin xmlns:modeler="http://activiti.com/modeler"><![CDATA[admin]]></modeler:user-info-email-admin>
+        <modeler:user-info-lastname-admin xmlns:modeler="http://activiti.com/modeler"><![CDATA[Administrator]]></modeler:user-info-lastname-admin>
+        <modeler:user-info-email-A001 xmlns:modeler="http://activiti.com/modeler"><![CDATA[yuqingzcmu@163.com]]></modeler:user-info-email-A001>
+        <modeler:user-info-firstname-A001 xmlns:modeler="http://activiti.com/modeler"><![CDATA[yu]]></modeler:user-info-firstname-A001>
+        <modeler:user-info-lastname-A001 xmlns:modeler="http://activiti.com/modeler"><![CDATA[qing]]></modeler:user-info-lastname-A001>
+        <modeler:activiti-idm-candidate-user xmlns:modeler="http://activiti.com/modeler"><![CDATA[true]]></modeler:activiti-idm-candidate-user>
+        <modeler:initiator-can-complete xmlns:modeler="http://activiti.com/modeler"><![CDATA[false]]></modeler:initiator-can-complete>
+      </extensionElements>
+    </userTask>
+    <userTask id="sid-7F302EC6-2CC0-479A-950A-754BB46C107B" name="HR 审核" activiti:candidateUsers="admin">
+      <extensionElements>
+        <modeler:user-info-email-admin xmlns:modeler="http://activiti.com/modeler"><![CDATA[admin]]></modeler:user-info-email-admin>
+        <modeler:user-info-lastname-admin xmlns:modeler="http://activiti.com/modeler"><![CDATA[Administrator]]></modeler:user-info-lastname-admin>
+        <modeler:activiti-idm-candidate-user xmlns:modeler="http://activiti.com/modeler"><![CDATA[true]]></modeler:activiti-idm-candidate-user>
+        <modeler:initiator-can-complete xmlns:modeler="http://activiti.com/modeler"><![CDATA[false]]></modeler:initiator-can-complete>
+      </extensionElements>
+    </userTask>
+    <endEvent id="sid-2F258F03-4E17-4538-8B82-ACEE8E5FA995"></endEvent>
+    <sequenceFlow id="sid-CFB479D6-C7B6-420F-A34A-3B2BCB9B4B21" sourceRef="startEvent1" targetRef="sid-3DD037E2-E996-4267-8157-F13C85D74143"></sequenceFlow>
+    <sequenceFlow id="sid-CE629A66-2C71-407A-99DA-220792B59708" sourceRef="sid-3DD037E2-E996-4267-8157-F13C85D74143" targetRef="sid-7F302EC6-2CC0-479A-950A-754BB46C107B"></sequenceFlow>
+    <sequenceFlow id="sid-08D12234-51F4-4B07-9F9C-7F370A7DBA09" sourceRef="sid-7F302EC6-2CC0-479A-950A-754BB46C107B" targetRef="sid-2F258F03-4E17-4538-8B82-ACEE8E5FA995"></sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_请假">
+    <bpmndi:BPMNPlane bpmnElement="请假" id="BPMNPlane_请假">
+      <bpmndi:BPMNShape bpmnElement="startEvent1" id="BPMNShape_startEvent1">
+        <omgdc:Bounds height="30.0" width="30.0" x="105.0" y="163.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="sid-3DD037E2-E996-4267-8157-F13C85D74143" id="BPMNShape_sid-3DD037E2-E996-4267-8157-F13C85D74143">
+        <omgdc:Bounds height="80.0" width="100.0" x="255.0" y="138.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="sid-7F302EC6-2CC0-479A-950A-754BB46C107B" id="BPMNShape_sid-7F302EC6-2CC0-479A-950A-754BB46C107B">
+        <omgdc:Bounds height="80.0" width="100.0" x="480.0" y="138.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="sid-2F258F03-4E17-4538-8B82-ACEE8E5FA995" id="BPMNShape_sid-2F258F03-4E17-4538-8B82-ACEE8E5FA995">
+        <omgdc:Bounds height="28.0" width="28.0" x="675.0" y="164.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="sid-CFB479D6-C7B6-420F-A34A-3B2BCB9B4B21" id="BPMNEdge_sid-CFB479D6-C7B6-420F-A34A-3B2BCB9B4B21">
+        <omgdi:waypoint x="135.0" y="178.0"></omgdi:waypoint>
+        <omgdi:waypoint x="255.0" y="178.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-CE629A66-2C71-407A-99DA-220792B59708" id="BPMNEdge_sid-CE629A66-2C71-407A-99DA-220792B59708">
+        <omgdi:waypoint x="355.0" y="178.0"></omgdi:waypoint>
+        <omgdi:waypoint x="480.0" y="178.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-08D12234-51F4-4B07-9F9C-7F370A7DBA09" id="BPMNEdge_sid-08D12234-51F4-4B07-9F9C-7F370A7DBA09">
+        <omgdi:waypoint x="580.0" y="178.0"></omgdi:waypoint>
+        <omgdi:waypoint x="675.0" y="178.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>
