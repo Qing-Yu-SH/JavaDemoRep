@@ -1,8 +1,11 @@
 package com.yq;
 
+import com.yq.lifecycle.LifecycleBean;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.test.context.junit4.SpringRunner;
 
 /**
@@ -17,7 +20,10 @@ public class TestUnit {
 
     @Test
     public void test_lifecycle(){
-        System.out.println("test_lifecycle");
+        ApplicationContext context =new ClassPathXmlApplicationContext("classpath:applicationContext.xml");
+        LifecycleBean lifecycleBean = (LifecycleBean) context.getBean("lifecycleBean");
+        lifecycleBean.work();
+        ((ClassPathXmlApplicationContext) context).close();
     }
 
 
