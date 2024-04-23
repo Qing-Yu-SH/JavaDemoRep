@@ -1,6 +1,7 @@
 package com.yq;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 /**
  * @program: JavaDemoRep
@@ -9,6 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @create: 2024-04-12 11:55
  **/
 @SpringBootApplication
+@EnableAspectJAutoProxy
 public class SpringApplication {
 
     public static void main(String[] args) {
