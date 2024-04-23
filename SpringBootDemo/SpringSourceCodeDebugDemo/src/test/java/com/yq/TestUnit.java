@@ -20,6 +20,7 @@ public class TestUnit {
 
     @Test
     public void test_lifecycle(){
+        // debug bean 生命周期；端点打在这里，从这里进入 refresh() 方法，进入创建 bean 的流程
         ApplicationContext context =new ClassPathXmlApplicationContext("classpath:applicationContext.xml");
         LifecycleBean lifecycleBean = (LifecycleBean) context.getBean("lifecycleBean");
         lifecycleBean.work();
