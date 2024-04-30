@@ -1,0 +1,7 @@
+server:
+  port: 8080
+
+# 需要开启三级缓存，否则无法启动项目
+spring:
+  main:
+    allow-circular-references: true
